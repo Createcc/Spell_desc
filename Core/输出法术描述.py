@@ -30,6 +30,13 @@ SpellRadius_path = os.path.join(
 )
 # ----------------------  END  -----------------------------
 
+# ----------------- 初始化输入输出文件路径 -----------------
+# spelllist.txt 文件路径   需要添加描述的法术id列表
+SpellList_path = os.path.join(current_dir, "spelllist.txt")
+# spelldesc.txt 文件路径   输出法术描述列表
+SpellDesc_path = os.path.join(current_dir, "spelldesc.txt")
+# ----------------------  END  -----------------------------
+
 
 def load_data(
     spell_file: str = Spell_path,
@@ -463,7 +470,7 @@ def main():
         spellradius_df,
     ) = load_data()
 
-    with open("SPELLLIST.TXT", "r", encoding="utf-8") as file:
+    with open(SpellList_path, "r", encoding="utf-8") as file:
         spell_ids = [line.strip() for line in file.readlines()]
 
     total_spells = len(spell_ids)
@@ -490,7 +497,7 @@ def main():
         if i % max(1, (total_spells // 50)) == 0:  # 每2%输出一次进度
             print(f"Processing progress: {i / total_spells * 100:.2f}%")
 
-    with open("SPELLDESC.TXT", "w", encoding="utf-8") as file:
+    with open(SpellDesc_path, "w", encoding="utf-8") as file:
         for result in results:
             file.write(result.replace("\n", " ") + "\n")
 
