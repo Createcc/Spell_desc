@@ -116,7 +116,8 @@ def process_description(
     parent_spell_id,
 ):
     pattern = re.compile(
-        r"\$(?:(@spelldesc(\d+))|(@spellname(\d+))|(\?s(\d+))|(\?a(\d+))|"
+        r"\$(?:(@spelldesc(\d+))|(@spellname(\d+))|"
+        r"(\?s(\d+))|(\?a(\d+))|"
         r"(s(\d+))|((\d+)s(\d+))|"
         r"(d(\d*))|(\d+)d(\d*)|"
         r"(t(\d*))|(\d+)t(\d*)|"
