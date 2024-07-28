@@ -6,47 +6,48 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 # ----------------- 初始化本地文件路径 -----------------
 # spell.csv 文件路径
 Spell_path = os.path.join(current_dir, "..", "raw_datas", "spell.csv")
-# spelleffect.csv 文件路径
-SpellEffect_path = os.path.join(current_dir, "..", "raw_datas", "spelleffect.csv")
-# spellmisc.csv 文件路径
-SpellMisc_path = os.path.join(current_dir, "..", "raw_datas", "spellmisc.csv")
-# spellduration.csv 文件路径
-SpellDuration_path = os.path.join(current_dir, "..", "raw_datas", "spellduration.csv")
-# spellradius.csv 文件路径
-SpellRadius_path = os.path.join(current_dir, "..", "raw_datas", "spellradius.csv")
-# spellname.csv 文件路径
-SpellName_path = os.path.join(current_dir, "..", "raw_datas", "spellname.csv")
 # spellauraoptions.csv 文件路径
 SpellAuraOptions_path = os.path.join(
     current_dir, "..", "raw_datas", "spellauraoptions.csv"
 )
+# spellduration.csv 文件路径
+SpellDuration_path = os.path.join(current_dir, "..", "raw_datas", "spellduration.csv")
+# spelleffect.csv 文件路径
+SpellEffect_path = os.path.join(current_dir, "..", "raw_datas", "spelleffect.csv")
+# spellmisc.csv 文件路径
+SpellMisc_path = os.path.join(current_dir, "..", "raw_datas", "spellmisc.csv")
+# spellname.csv 文件路径
+SpellName_path = os.path.join(current_dir, "..", "raw_datas", "spellname.csv")
+# spellradius.csv 文件路径
+SpellRadius_path = os.path.join(current_dir, "..", "raw_datas", "spellradius.csv")
 # ----------------------  END  -----------------------------
 
 
 def load_data(
     spell_file: str = Spell_path,
+    spellauraoptions_file: str = SpellAuraOptions_path,
+    spellduration_file: str = SpellDuration_path,
     spelleffect_file: str = SpellEffect_path,
     spellmisc_file: str = SpellMisc_path,
-    spellduration_file: str = SpellDuration_path,
-    spellradius_file: str = SpellRadius_path,
     spellname_file: str = SpellName_path,
-    spellauraoptions_file: str = SpellAuraOptions_path,
+    spellradius_file: str = SpellRadius_path,
 ):
     spells_df = pd.read_csv(spell_file)
+    spellauraoptions_df = pd.read_csv(spellauraoptions_file)
+    spellduration_df = pd.read_csv(spellduration_file)
     spelleffect_df = pd.read_csv(spelleffect_file)
     spellmisc_df = pd.read_csv(spellmisc_file)
-    spellduration_df = pd.read_csv(spellduration_file)
-    spellradius_df = pd.read_csv(spellradius_file)
     spellname_df = pd.read_csv(spellname_file)
-    spellauraoptions_df = pd.read_csv(spellauraoptions_file)
+    spellradius_df = pd.read_csv(spellradius_file)
+
     return (
         spells_df,
+        spellauraoptions_df,
+        spellduration_df,
         spelleffect_df,
         spellmisc_df,
-        spellduration_df,
-        spellradius_df,
         spellname_df,
-        spellauraoptions_df,
+        spellradius_df,
     )
 
 
@@ -446,12 +447,12 @@ def get_effect_base_points(spell_id, index, spelleffect_df):
 def main():
     (
         spells_df,
+        spellauraoptions_df,
+        spellduration_df,
         spelleffect_df,
         spellmisc_df,
-        spellduration_df,
-        spellradius_df,
         spellname_df,
-        spellauraoptions_df,
+        spellradius_df,
     ) = load_data()
 
     with open("SPELLLIST.TXT", "r", encoding="utf-8") as file:
