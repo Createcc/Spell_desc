@@ -6,6 +6,8 @@ setlocal enabledelayedexpansion
 set "filepath=%~dp0"
 
 :: 提示用户输入版本号
+echo 123
+cls
 echo 请输入版本号，例如： 11.0.2.55789
 set /p version=
 
