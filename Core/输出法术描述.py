@@ -116,17 +116,17 @@ def process_description(
     parent_spell_id,
 ):
     pattern = re.compile(
-        r"\$(?:(@spelldesc(\d+))|(@spellname(\d+))|"
-        r"(\?s(\d+))|(\?a(\d+))|"
-        r"(s(\d+))|((\d+)s(\d+))|"
-        r"(d(\d*))|(\d+)d(\d*)|"
-        r"(t(\d*))|(\d+)t(\d*)|"
-        r"(A(\d*))|(\d+)A(\d*)|"
-        r"(D(\d*))|(\d+)D(\d*)|"
-        r"(a(\d*))|(\d+)a(\d*)|"
-        r"(T(\d*))|(\d+)T(\d*)|"
-        r"(u(\d*))|(\d+)u(\d*)|"
-        r"(m(\d*))|(\d+)m(\d*))"
+        r"\$(?:(@spelldesc(\d+))|(@spellname(\d+))|"  # Matches $@spelldesc123 or $@spellname123
+        r"(\?s(\d+))|(\?a(\d+))|"  # Matches $?s123 or $?a123
+        r"(s(\d+))|((\d+)s(\d+))|"  # Matches $s123 or $1s123
+        r"(d(\d*))|(\d+)d(\d*)|"  # Matches $d or $123d or $123d123
+        r"(t(\d*))|(\d+)t(\d*)|"  # Matches $t or $123t or $123t123
+        r"(A(\d*))|(\d+)A(\d*)|"  # Matches $A or $123A or $123A123
+        r"(D(\d*))|(\d+)D(\d*)|"  # Matches $D or $123D or $123D123
+        r"(a(\d*))|(\d+)a(\d*)|"  # Matches $a or $123a or $123a123
+        r"(T(\d*))|(\d+)T(\d*)|"  # Matches $T or $123T or $123T123
+        r"(u(\d*))|(\d+)u(\d*)|"  # Matches $u or $123u or $123u123
+        r"(m(\d*))|(\d+)m(\d*))"  # Matches $m or $123m or $123m123
     )
 
     while "$" in description:
@@ -135,51 +135,51 @@ def process_description(
             break
         for match in matches:
             (
-                at_spelldesc,
-                spell_desc_id,
-                at_spellname,
-                spellname_id,
-                q_s,
-                q_s_id,
-                q_a,
-                q_a_id,
-                s_full,
-                s_index,
-                digits_full,
-                spell_id,
-                spell_index,
-                d_full,
-                d_index,
-                spell_d_id,
-                spell_d_index,
-                t_full,
-                t_index,
-                spell_t_id,
-                spell_t_index,
-                a_full,
-                a_index,
-                spell_a_id,
-                spell_a_index,
-                D_full,
-                D_index,
-                spell_D_id,
-                spell_D_index,
-                a_lower_full,
-                a_lower_index,
-                spell_a_lower_id,
-                spell_a_lower_index,
-                T_full,
-                T_index,
-                spell_T_id,
-                spell_T_index,
-                u_full,
-                u_index,
-                spell_u_id,
-                spell_u_index,
-                m_full,
-                m_index,
-                spell_m_id,
-                spell_m_index,
+                at_spelldesc,  # Matches @spelldesc123
+                spell_desc_id,  # Captures the 123 from @spelldesc123
+                at_spellname,  # Matches @spellname123
+                spellname_id,  # Captures the 123 from @spellname123
+                q_s,  # Matches $?s123
+                q_s_id,  # Captures the 123 from $?s123
+                q_a,  # Matches $?a123
+                q_a_id,  # Captures the 123 from $?a123
+                s_full,  # Matches $s123
+                s_index,  # Captures the 123 from $s123
+                digits_full,  # Matches $1s123
+                spell_id,  # Captures the 1 from $1s123
+                spell_index,  # Captures the 123 from $1s123
+                d_full,  # Matches $d123
+                d_index,  # Captures the 123 from $d123
+                spell_d_id,  # Matches $123d123
+                spell_d_index,  # Captures the 123 from $123d123
+                t_full,  # Matches $t123
+                t_index,  # Captures the 123 from $t123
+                spell_t_id,  # Matches $123t123
+                spell_t_index,  # Captures the 123 from $123t123
+                a_full,  # Matches $A123
+                a_index,  # Captures the 123 from $A123
+                spell_a_id,  # Matches $123A123
+                spell_a_index,  # Captures the 123 from $123A123
+                D_full,  # Matches $D123
+                D_index,  # Captures the 123 from $D123
+                spell_D_id,  # Matches $123D123
+                spell_D_index,  # Captures the 123 from $123D123
+                a_lower_full,  # Matches $a123
+                a_lower_index,  # Captures the 123 from $a123
+                spell_a_lower_id,  # Matches $123a123
+                spell_a_lower_index,  # Captures the 123 from $123a123
+                T_full,  # Matches $T123
+                T_index,  # Captures the 123 from $T123
+                spell_T_id,  # Matches $123T123
+                spell_T_index,  # Captures the 123 from $123T123
+                u_full,  # Matches $u123
+                u_index,  # Captures the 123 from $u123
+                spell_u_id,  # Matches $123u123
+                spell_u_index,  # Captures the 123 from $123u123
+                m_full,  # Matches $m123
+                m_index,  # Captures the 123 from $m123
+                spell_m_id,  # Matches $123m123
+                spell_m_index,  # Captures the 123 from $123m123
             ) = match
 
             if at_spelldesc:
