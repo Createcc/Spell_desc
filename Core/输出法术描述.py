@@ -4,22 +4,30 @@ import os
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # ----------------- 初始化本地文件路径 -----------------
+# 设置原始文件版本号
+Version = "_11.0.2.55789"
 # spell.csv 文件路径
-Spell_path = os.path.join(current_dir, "..", "raw_datas", "spell.csv")
+Spell_path = os.path.join(current_dir, "..", "raw_datas", f"spell{Version}.csv")
 # spellauraoptions.csv 文件路径
 SpellAuraOptions_path = os.path.join(
-    current_dir, "..", "raw_datas", "spellauraoptions.csv"
+    current_dir, "..", "raw_datas", f"spellauraoptions{Version}.csv"
 )
 # spellduration.csv 文件路径
-SpellDuration_path = os.path.join(current_dir, "..", "raw_datas", "spellduration.csv")
+SpellDuration_path = os.path.join(
+    current_dir, "..", "raw_datas", f"spellduration{Version}.csv"
+)
 # spelleffect.csv 文件路径
-SpellEffect_path = os.path.join(current_dir, "..", "raw_datas", "spelleffect.csv")
+SpellEffect_path = os.path.join(
+    current_dir, "..", "raw_datas", f"spelleffect{Version}.csv"
+)
 # spellmisc.csv 文件路径
-SpellMisc_path = os.path.join(current_dir, "..", "raw_datas", "spellmisc.csv")
+SpellMisc_path = os.path.join(current_dir, "..", "raw_datas", f"spellmisc{Version}.csv")
 # spellname.csv 文件路径
-SpellName_path = os.path.join(current_dir, "..", "raw_datas", "spellname.csv")
+SpellName_path = os.path.join(current_dir, "..", "raw_datas", f"spellname{Version}.csv")
 # spellradius.csv 文件路径
-SpellRadius_path = os.path.join(current_dir, "..", "raw_datas", "spellradius.csv")
+SpellRadius_path = os.path.join(
+    current_dir, "..", "raw_datas", f"spellradius{Version}.csv"
+)
 # ----------------------  END  -----------------------------
 
 
