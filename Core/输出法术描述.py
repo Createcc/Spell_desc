@@ -1,7 +1,35 @@
 import pandas as pd
 import re
+import os
 
-def load_data(spell_file, spelleffect_file, spellmisc_file, spellduration_file, spellradius_file, spellname_file, spellauraoptions_file):
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# ----------------- 初始化本地文件路径 -----------------
+# spell.csv 文件路径
+Spell_path = os.path.join(current_dir, "..", "raw_datas", "spell.csv")
+# spelleffect.csv 文件路径
+SpellEffect_path = os.path.join(current_dir, "..", "raw_datas", "spelleffect.csv")
+# spellmisc.csv 文件路径
+SpellMisc_path = os.path.join(current_dir, "..", "raw_datas", "spellmisc.csv")
+# spellduration.csv 文件路径
+SpellDuration_path = os.path.join(current_dir, "..", "raw_datas", "spellduration.csv")
+# spellradius.csv 文件路径
+SpellRadius_path = os.path.join(current_dir, "..", "raw_datas", "spellradius.csv")
+# spellname.csv 文件路径
+SpellName_path = os.path.join(current_dir, "..", "raw_datas", "spellname.csv")
+# spellauraoptions.csv 文件路径
+SpellAuraOptions_path = os.path.join(current_dir, "..", "raw_datas", "spellauraoptions.csv")
+# ----------------------  END  -----------------------------
+
+
+def load_data(
+    spell_file: str = Spell_path,
+    spelleffect_file: str = SpellEffect_path,
+    spellmisc_file: str = SpellMisc_path,
+    spellduration_file: str = SpellDuration_path,
+    spellradius_file: str = SpellRadius_path,
+    spellname_file: str = SpellName_path,
+    spellauraoptions_file: str = SpellAuraOptions_path,
+):
     spells_df = pd.read_csv(spell_file)
     spelleffect_df = pd.read_csv(spelleffect_file)
     spellmisc_df = pd.read_csv(spellmisc_file)
@@ -10,6 +38,7 @@ def load_data(spell_file, spelleffect_file, spellmisc_file, spellduration_file, 
     spellname_df = pd.read_csv(spellname_file)
     spellauraoptions_df = pd.read_csv(spellauraoptions_file)
     return spells_df, spelleffect_df, spellmisc_df, spellduration_df, spellradius_df, spellname_df, spellauraoptions_df
+
 
 def format_number(value):
     if value.is_integer():
@@ -256,8 +285,7 @@ def get_effect_base_points(spell_id, index, spelleffect_df):
     return format_number(base_points / 1000)
 
 def main():
-    spells_df, spelleffect_df, spellmisc_df, spellduration_df, spellradius_df, spellname_df, spellauraoptions_df = load_data(
-        'spell.csv', 'spelleffect.csv', 'spellmisc.csv', 'spellduration.csv', 'spellradius.csv', 'spellname.csv', 'spellauraoptions.csv')
+    spells_df, spelleffect_df, spellmisc_df, spellduration_df, spellradius_df, spellname_df, spellauraoptions_df = load_data()
     
     with open('SPELLLIST.TXT', 'r', encoding='utf-8') as file:
         spell_ids = [line.strip() for line in file.readlines()]
